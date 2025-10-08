@@ -1,3 +1,5 @@
+import re
+from playwright.sync_api import Page, expect
 from pytest_playwright.pytest_playwright import browser
 from playwright.sync_api import Page
 
@@ -7,6 +9,7 @@ def test_playwrightbasics(playwright):
     context= browser.new_context()
     page= context.new_page()
     page.goto("https://playwright.com/")
+    expect(page).to_have_title(re.compile("Playwright"))
 
 # chromium headless mode 1 single context
 def test_playwrightshortcut(page:Page):
